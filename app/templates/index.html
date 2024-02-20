@@ -1,26 +1,45 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Guessic Form</h2>
-<form method="POST" action="{{ url_for('main.test') }}">
-    {{ form.hidden_tag() }}
-    <div>
-        {{ form.number.label }}
-        {{ form.number(size=8) }}
-        {{ form.number(class="form-control") }}
-        {% for error in form.number.errors %}
-            <span style="color: red;">{{ error }}</span><br>
-        {% endfor %}
+<div class="flex flex-wrap p-4">
+    <div class="w-full">
+        <div class="bg-blue-500 p-4">
+            <p class="text-white">This is a test element with Tailwind CSS styling.</p>
+        </div>
+        <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        
+        <h2 class="text-2xl font-bold mb-4">Guessic Form</h2>
+        <form method="POST" action="{{ url_for('main.test') }}" class="w-full max-w-lg">
+            {{ form.hidden_tag() }}
+            <div class="mb-4">
+                <label for="number" class="block text-gray-700 text-sm font-bold mb-2">Number</label>
+                <input id="number" name="number" type="text" size="8" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                {% for error in form.number.errors %}
+                    <p class="text-red-500 text-xs italic">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Gender</label>
+                <div>
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio text-indigo-600" name="gender" value="male">
+                        <span class="ml-2">Male</span>
+                    </label>
+                    <label class="inline-flex items-center ml-6">
+                        <input type="radio" class="form-radio text-indigo-600" name="gender" value="female">
+                        <span class="ml-2">Female</span>
+                    </label>
+                </div>
+                {% for error in form.gender.errors %}
+                    <p class="text-red-500 text-xs italic">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
+            </div>
+        </form>
+        
+        </div>
     </div>
-    <div>
-        {{ form.gender.label }}
-        {{ form.gender() }}
-        {% for error in form.gender.errors %}
-            <span style="color: red;">{{ error }}</span><br>
-        {% endfor %}
-    </div>
-    <div>
-        {{ form.submit(class="btn btn-primary") }}
-    </div>
-</form>
+</div>
 {% endblock %}
