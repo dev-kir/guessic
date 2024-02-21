@@ -21,9 +21,9 @@ def result():
         gender = form.gender.data
         processed_lines = []
         for i in range(10000):
-            line = f"{number:04d}{i:04d}"
+            line = f"{number:08d}{i:04d}"
             if (gender == 'male' and i % 2 == 0) or (gender == 'female' and i % 2 != 0):
-                line = str(int(line) + 1)
+                # line = str(int(line) + 1)
                 processed_lines.append(line)
         result_data = '\n'.join(processed_lines)
         return render_template('result.html', result_data=result_data)
