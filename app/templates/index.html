@@ -1,44 +1,66 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="flex flex-wrap p-4">
-    <div class="w-full">
-        <div class="bg-blue-500 p-4">
-            <p class="text-white">This is a test element with Tailwind CSS styling.</p>
+
+
+<div class="bg-sky-950 h-screen">
+    <div class="flex flex-col justify-center items-center h-2/5">
+        <div class="mb-4">
+            <h1 class="text-9xl font-bold mb-1 text-lime-400 ">guessic</h1>
+            <hr>
         </div>
-        <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        
-        <h2 class="text-2xl font-bold mb-4">Guessic Form</h2>
-        <form method="POST" action="{{ url_for('main.test') }}" class="w-full max-w-lg">
-            {{ form.hidden_tag() }}
-            <div class="mb-4">
-                <label for="number" class="block text-gray-700 text-sm font-bold mb-2">Number</label>
-                <input id="number" name="number" type="text" size="8" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                {% for error in form.number.errors %}
-                    <p class="text-red-500 text-xs italic">{{ error }}</p>
-                {% endfor %}
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2">Gender</label>
-                <div>
-                    <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio text-indigo-600" name="gender" value="male">
-                        <span class="ml-2">Male</span>
-                    </label>
-                    <label class="inline-flex items-center ml-6">
-                        <input type="radio" class="form-radio text-indigo-600" name="gender" value="female">
-                        <span class="ml-2">Female</span>
-                    </label>
+    </div>
+    <div class="flex flex-col justify-center items-center w-screen">
+        <div class="w-3/5 p-6 shadow-lg bg-gray-600 rounded-3xl mx-auto">
+            
+            <form method="POST" action="{{ url_for('main.test') }}" class="w-full">
+                {{ form.hidden_tag() }}
+
+                <div class="mb-4">
+                    <div class="flex">
+                        <div class="flex-none w-1/4 p-4 flex items-center">
+                            <label for="number" class="block text-lime-400 text font-bold mb-2">FIRST 8 DIGITS IC:</label>
+                        </div>
+                        <div class="flex-grow w-3/4 p-4">
+                            <input id="number" name="number" type="text" size="8" class="appearance-none block w-full bg-gray-200 border border-lime-400 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                            {% for error in form.number.errors %}
+                                <p class="text-red-500 text-xs italic">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
-                {% for error in form.gender.errors %}
-                    <p class="text-red-500 text-xs italic">{{ error }}</p>
-                {% endfor %}
-            </div>
-            <div>
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
-            </div>
-        </form>
-        
+
+                <div class="mb-4">
+                    <div class="flex">
+                        <div class="flex-none w-1/4 p-4 flex items-center">
+                            <label for="number" class="block text-lime-400 text font-bold mb-2">GENDER:</label>
+                        </div>
+                        <div class="flex-grow w-3/4 p-4">
+                            <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                    <div class="flex items-center ps-3">
+                                        <input id="horizontal-list-radio-male" type="radio" value="male" name="gender" class="w-4 h-4 text-lime-400 bg-gray-100 border-lime-400 focus:ring-lime-500 dark:focus:ring-lime-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                        <label for="horizontal-list-radio-male" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">MALE</label>
+                                    </div>
+                                </li>
+                                <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                    <div class="flex items-center ps-3">
+                                        <input id="horizontal-list-radio-female" type="radio" value="female" name="gender" class="w-4 h-4 text-lime-400 bg-gray-100 border-lime-400 focus:ring-lime-500 dark:focus:ring-lime-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                        <label for="horizontal-list-radio-female" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">FEMALE</label>
+                                    </div>
+                                </li>
+                            </ul>
+                            {% for error in form.gender.errors %}
+                                <p class="text-red-500 text-xs italic">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center items-center">
+                    <button type="submit" class="bg-lime-400 hover:bg-lime-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

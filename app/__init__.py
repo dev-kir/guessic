@@ -7,4 +7,4 @@ app.config['SECRET_KEY'] = 'idontknowwheretogetthersecretkeyatall'
 app.register_blueprint(routes.main)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=8000)
