@@ -17,11 +17,15 @@ def index():
 def result():
     form = inputForm()
     if form.validate_on_submit():
-        number = form.number.data
+        number = int(form.number.data)
         gender = form.gender.data
-        result_data = (f"Number: {number}, Gender: {gender}")
-        # process data here
-
+        processed_lines = []
+        for i in range(10000):
+            line = f"{number:04d}{i:04d}"
+            if (gender == 'male' and i % 2 == 0) or (gender == 'female' and i % 2 != 0):
+                line = str(int(line) + 1)
+                processed_lines.append(line)
+        result_data = '\n'.join(processed_lines)
         return render_template('result.html', result_data=result_data)
     return render_template('index.html', form = form)
 
