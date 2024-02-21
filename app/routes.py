@@ -11,22 +11,20 @@ main = Blueprint('main', __name__, template_folder='templates')
 
 @main.route('/', methods = ['GET', 'POST'])
 def index():
+    return render_template('index.html', form = inputForm())
+
+@main.route('/result', methods = ['GET', 'POST'])
+def result():
     form = inputForm()
     if form.validate_on_submit():
         number = form.number.data
         gender = form.gender.data
-        print(f"Number: {number}, Gender: {gender}")
-        return redirect(url_for('main.index'))
+        result_data = (f"Number: {number}, Gender: {gender}")
+        # process data here
+
+        return render_template('result.html', result_data=result_data)
     return render_template('index.html', form = form)
 
-@main.route('/test', methods=['POST'])
+@main.route('/test')
 def test():
-    if request.method == 'POST':
-        # Access form data
-        number = request.form.get('number')
-        gender = request.form.get('gender')
-
-        # Print the data (you can modify this based on your actual form fields)
-        print(f"Number: {number}, Gender: {gender}")
-
     return render_template('test.html')
